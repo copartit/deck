@@ -49,3 +49,4 @@ selenium-logs
 *.browser.log
 test/functional/cypress/videos/**/*
 test/functional/cypress/screenshots/**/*
+settings-my.js
