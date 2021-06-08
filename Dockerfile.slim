@@ -2,11 +2,11 @@ FROM debian:stable-slim
 LABEL maintainer="sig-platform@spinnaker.io"
 
 WORKDIR /opt/deck
-COPY docker        /opt/deck/docker
+RUN chown www-data:www-data .
+COPY --chown=www-data:www-data docker /opt/deck/docker
 RUN docker/setup-apache2.sh
 
-COPY build/webpack /opt/deck/html
-RUN chown -R www-data:www-data /opt/deck
+COPY --chown=www-data:www-data build/webpack /opt/deck/html
 USER www-data
 
 CMD docker/run-apache2.sh
