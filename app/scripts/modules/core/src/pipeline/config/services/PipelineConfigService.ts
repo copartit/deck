@@ -67,7 +67,9 @@ export class PipelineConfigService {
     }
 
     const endpoint = pipeline.strategy ? 'strategies' : 'pipelines';
-    return REST(endpoint).query({ staleCheck: true }).post(pipeline);
+    // return REST(endpoint).query({ staleCheck: true }).post(pipeline);
+    // temp turn off stale check as it causes gate to throw 400 for unknown reason
+    return REST(endpoint).post(pipeline);
   }
 
   public static reorderPipelines(
