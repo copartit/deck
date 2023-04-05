@@ -41,3 +41,4 @@ test/functional/cypress/screenshots/**/*
 
 # vite local files
 **/.env.local
+settings-my.js
