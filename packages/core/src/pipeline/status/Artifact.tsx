@@ -48,8 +48,9 @@ export class Artifact extends React.Component<IArtifactProps> {
               )}
             </dt>
             <dd>
-              <div className="artifact-name">{name || reference}</div>
-              {version && <div className="artifact-version"> - {version}</div>}
+              <pre>
+                {name || reference}:{version || 'latest'}
+              </pre>
             </dd>
           </div>
         </dl>
