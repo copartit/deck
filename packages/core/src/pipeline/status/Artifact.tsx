@@ -32,6 +32,15 @@ export class Artifact extends React.Component<IArtifactProps> {
     return tooltipEntries.join('\n');
   }
 
+  private artifactDelimiter(artifact: IArtifact): string {
+    switch (artifact.type) {
+      case 'docker/image':
+        return ':';
+      default:
+        return ' - ';
+    }
+  }
+
   public render() {
     const { artifact, isDefault } = this.props;
     const { name, reference, version, type } = artifact;
@@ -42,14 +51,22 @@ export class Artifact extends React.Component<IArtifactProps> {
           <div className="artifact-detail">
             <dt>
               {ArtifactIconService.getPath(type) ? (
-                <img className="artifact-icon" src={ArtifactIconService.getPath(type)} width="18" height="18" />
+                <img
+                  className="artifact-icon"
+                  alt={type}
+                  src={ArtifactIconService.getPath(type)}
+                  width="36"
+                  height="36"
+                />
               ) : (
                 <span>[{type}] </span>
               )}
             </dt>
             <dd>
               <pre>
-                {name || reference}:{version || 'latest'}
+                {name || reference}
+                {this.artifactDelimiter(artifact)}
+                {version || 'latest'}
               </pre>
             </dd>
           </div>
