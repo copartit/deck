@@ -172,22 +172,8 @@ export class PipelineConfigService {
     return uniq(upstreamStages);
   }
 
-  private static sortPipelines(pipelines: IPipeline[]): PromiseLike<IPipeline[]> {
+  static sortPipelines(pipelines: IPipeline[]): PromiseLike<IPipeline[]> {
     const sorted = sortBy(pipelines, ['index', 'name']);
-
-    // if there are pipelines with a bad index, fix that
-    const toReindex: Array<PromiseLike<void>> = [];
-    if (sorted && sorted.length) {
-      sorted.forEach((pipeline, index) => {
-        if (pipeline.index !== index) {
-          pipeline.index = index;
-          toReindex.push(this.savePipeline(pipeline));
-        }
-      });
-      if (toReindex.length) {
-        return $q.all(toReindex).then(() => sorted);
-      }
-    }
     return $q.resolve(sorted);
   }
 }
