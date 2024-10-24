@@ -106,5 +106,6 @@
   "lint-staged": {
     "packages/**/*.{js,jsx,ts,tsx}": "eslint --fix",
     "packages/**/*.{js,jsx,ts,tsx,html,css,less}": "prettier --write"
-  }
+  },
+  "dependencies": {}
 }
